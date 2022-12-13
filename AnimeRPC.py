@@ -5,6 +5,7 @@ import requests
 import keyboard
 
 
+
 anilist = Anilist()
 client_id = '1045803809848430624'
 RPC = Presence(client_id)
@@ -27,20 +28,19 @@ $$/   $$/ $$/   $$/ $$/ $$/  $$/  $$/  $$$$$$$/ $$/   $$/ $$/        $$$$$$/
 
 def check_update():
     # check if there's a higher version of the app
-    commit_count = 1
+    commit_count = 3
     repo_commit_count = len(requests.get(
-        "https://api.github.com/TomasKrajcovicIndie/AnimeRPC/commits?per_page=100").json())
+        "https://api.github.com/repos/TomasKrajcovicIndie/AnimeRPC/commits?per_page=100").json())
     if commit_count != repo_commit_count:
         print("\nThere is a new version of the app, please update it at https://github.com/TomasKrajcovicIndie/AnimeRPC\n")
     else:
         print("\nAnimeRPC is up to date!\n")
 
 print(banner())
-print(check_update())
+check_update()
 print('')
 name = input("Enter anime name: ")
 episode = input("Enter episode number: ")
-print("")
 print('Starting AnimeRPC...')
 
 anime_dict = anilist.get_anime_id(name)
